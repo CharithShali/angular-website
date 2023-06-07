@@ -138,10 +138,10 @@ color: #404179;" href="">CCTV and Equipments</a></h4>
     <div class="row" data-aos="fade-up" data-aos-delay="100">
       <div class="col-lg-12">
         <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">All</li>
+        
           <li  (click)="updateKeyword('camera')">Camera</li>
-          <li (click)="updateKeyword('DVR')">Card</li>
-          <li (click)="updateKeyword('Camera')">Web</li>
+          <li (click)="updateKeyword('DVR')">DVR</li>
+          <!-- <li (click)="updateKeyword('Camera')">Web</li> -->
         </ul>
       </div>
     </div>
@@ -152,12 +152,33 @@ color: #404179;" href="">CCTV and Equipments</a></h4>
         <div class="portfolio-wrap">
           <img src="../../../assets/images/camera/{{camera.image}}" class="img-fluid" alt="">
           <div class="portfolio-links">
-            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-            <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+            <a href="../../../assets/images/camera/{{camera.image}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+            <a  (click)="openModel(camera)" ><i class="bi bi-link"></i></a>
           </div>
           <div class="portfolio-info">
             <h4>{{camera.name}}</h4>
-            <p>Rs:{{camera.price}}/=</p>
+            <h4 style="font-size: 20px;color:#6610F2;">Rs:{{camera.price}}/=</h4>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+
+
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" *ngIf="filter === 'DVR'">
+
+      <div  class="col-lg-4 col-md-6 portfolio-item filter-app" *ngFor="let dvr of dvrs">
+        <div class="portfolio-wrap">
+          <img src="../../../assets/images/DVR/{{dvr.image}}" class="img-fluid" alt="">
+          <div class="portfolio-links">
+            <a href="../../../assets/images/DVR/{{dvr.image}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+            <a  ><i class="bi bi-link"></i></a>
+          </div>
+          <div class="portfolio-info">
+            <h4>{{dvr.name}}</h4>
+            <h4 style="font-size: 20px;color:#6610F2;">Rs:{{dvr.price}}/=</h4>
           </div>
         </div>
       </div>
@@ -201,3 +222,26 @@ color: #404179;" href="">CCTV and Equipments</a></h4>
 
       </div>
     </section><!-- End About Section -->
+
+
+
+
+
+
+    <div class="modal" id="myModal">
+      <div class="modal-dialog" >
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h4 class="modal-title" >Specifications</h4>
+            <button type="button" class="btn-close" (click)="CloseModel()" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body" *ngFor="let des of newCamera.description">
+            <li>{{des}}</li>
+    
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="CloseModel()" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
